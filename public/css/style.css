@@ -1,0 +1,552 @@
+/* =============================================
+   style.css — Todo App Styles
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* ---- CSS Variables (easy to change colours in one place) ---- */
+:root {
+  --bg:           #F0F2F5;
+  --surface:      #FFFFFF;
+  --border:       #E4E7EC;
+  --primary:      #2563EB;
+  --primary-dark: #1D4ED8;
+  --text:         #111827;
+  --text-muted:   #6B7280;
+  --high:         #EF4444;
+  --high-bg:      #FEF2F2;
+  --medium:       #F59E0B;
+  --medium-bg:    #FFFBEB;
+  --low:          #10B981;
+  --low-bg:       #ECFDF5;
+  --radius:       10px;
+  --shadow:       0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:    0 4px 16px rgba(0,0,0,0.10);
+}
+
+/* ---- Base ---- */
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =============================================
+   AUTH PAGE (index.html)
+   ============================================= */
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #EFF6FF 0%, #F0F2F5 100%);
+}
+
+.auth-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.auth-logo {
+  width: 48px;
+  height: 48px;
+  background: var(--primary);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 auto 16px;
+}
+
+.auth-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.auth-subtitle {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* =============================================
+   SHARED COMPONENTS
+   ============================================= */
+
+/* Tabs */
+.nav-pills .nav-link {
+  color: var(--text-muted);
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 8px 16px;
+}
+
+.nav-pills .nav-link.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  padding: 9px 13px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--text);
+  background-color: var(--surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  outline: none;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+/* Primary button */
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 9px 20px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  box-shadow: none;
+}
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+
+.app-navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.app-navbar .brand {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-icon {
+  width: 30px;
+  height: 30px;
+  background: var(--primary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.nav-user-email {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.btn-logout {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-logout:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* =============================================
+   MAIN LAYOUT
+   ============================================= */
+
+.app-layout {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+/* Page header */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.page-subtitle {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* =============================================
+   ADD TASK FORM CARD
+   ============================================= */
+
+.add-task-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.add-task-card h6 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* =============================================
+   FILTER & SORT BAR
+   ============================================= */
+
+.filter-bar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+
+/* Status filter tabs inside filter bar */
+.status-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.status-tab {
+  border: none;
+  background: none;
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.status-tab.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Small selects in filter bar */
+.filter-select {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border-radius: 7px;
+  border: 1.5px solid var(--border);
+  padding: 5px 10px;
+  color: var(--text);
+  background: var(--surface);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* "Sort by" label */
+.filter-label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* =============================================
+   TODO CARDS
+   ============================================= */
+
+.todo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+
+.todo-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Coloured left border based on priority */
+.priority-bar {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.priority-bar.high   { background-color: var(--high); }
+.priority-bar.medium { background-color: var(--medium); }
+.priority-bar.low    { background-color: var(--low); }
+
+/* Card inner content */
+.todo-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Checkbox */
+.todo-checkbox {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+/* Text area */
+.todo-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-text {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  word-break: break-word;
+  cursor: text;
+  transition: color 0.15s;
+}
+
+.todo-card.completed .todo-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.todo-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+/* Category tag */
+.category-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #EFF6FF;
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* Priority badge */
+.priority-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: capitalize;
+}
+
+.priority-badge.high   { background: var(--high-bg);   color: var(--high); }
+.priority-badge.medium { background: var(--medium-bg); color: var(--medium); }
+.priority-badge.low    { background: var(--low-bg);    color: var(--low); }
+
+/* Due date */
+.due-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #F3F4F6;
+  color: var(--text-muted);
+}
+
+.due-badge.overdue {
+  background: var(--high-bg);
+  color: var(--high);
+}
+
+/* Action buttons */
+.todo-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 12px;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all 0.15s;
+  font-size: 13px;
+}
+
+.action-btn:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.action-btn.delete:hover {
+  background: var(--high-bg);
+  color: var(--high);
+}
+
+/* Inline edit input */
+.edit-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  width: 100%;
+  padding: 0;
+  border-bottom: 2px solid var(--primary);
+  color: var(--text);
+}
+
+/* =============================================
+   EMPTY STATE
+   ============================================= */
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+.empty-state .empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+.empty-state p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* =============================================
+   STATS ROW
+   ============================================= */
+
+.stats-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+}
+
+.stat-card .stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.stat-card .stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-card.total   .stat-number { color: var(--primary); }
+.stat-card.active  .stat-number { color: var(--medium); }
+.stat-card.done    .stat-number { color: var(--low); }

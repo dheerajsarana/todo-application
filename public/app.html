@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TodoApp — My Tasks</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ---- Navbar ---- -->
+  <nav class="app-navbar">
+    <div class="brand">
+      <div class="brand-icon">✓</div>
+      TodoApp
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <span class="nav-user-email d-none d-sm-inline" id="userEmail"></span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ---- Main Layout ---- -->
+  <div class="app-layout">
+
+    <!-- Page header -->
+    <div class="page-header">
+      <h1 class="page-title">My Tasks</h1>
+      <p class="page-subtitle" id="pageSubtitle">Loading...</p>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats-row">
+      <div class="stat-card total">
+        <div class="stat-number" id="statTotal">0</div>
+        <div class="stat-label">Total</div>
+      </div>
+      <div class="stat-card active">
+        <div class="stat-number" id="statActive">0</div>
+        <div class="stat-label">Active</div>
+      </div>
+      <div class="stat-card done">
+        <div class="stat-number" id="statDone">0</div>
+        <div class="stat-label">Completed</div>
+      </div>
+    </div>
+
+    <!-- ---- Add Task Card ---- -->
+    <div class="add-task-card">
+      <h6>New Task</h6>
+      <form onsubmit="handleAddTodo(event)">
+
+        <!-- Task text -->
+        <div class="mb-3">
+          <input type="text" class="form-control" id="newTodoText" placeholder="What do you need to do?" required>
+        </div>
+
+        <!-- Priority, Category, Due Date in a row -->
+        <div class="row g-2 mb-3">
+          <div class="col-12 col-sm-4">
+            <select class="form-select" id="newTodoPriority">
+              <option value="medium" selected>🟡 Medium priority</option>
+              <option value="high">🔴 High priority</option>
+              <option value="low">🟢 Low priority</option>
+            </select>
+          </div>
+          <div class="col-12 col-sm-4">
+            <select class="form-select" id="newTodoCategory">
+              <option value="General"  selected>📋 General</option>
+              <option value="Work">💼 Work</option>
+              <option value="Personal">🏠 Personal</option>
+              <option value="Shopping">🛒 Shopping</option>
+              <option value="Health">💪 Health</option>
+            </select>
+          </div>
+          <div class="col-12 col-sm-4">
+            <input type="date" class="form-control" id="newTodoDueDate" title="Optional due date">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary px-4">
+          <i class="bi bi-plus-lg me-1"></i> Add Task
+        </button>
+
+      </form>
+    </div>
+
+    <!-- ---- Filter & Sort Bar ---- -->
+    <div class="filter-bar">
+
+      <!-- Status tabs: All / Active / Completed -->
+      <div class="status-tabs">
+        <button class="status-tab active" id="tab-all"       onclick="setStatusFilter('all')">All</button>
+        <button class="status-tab"        id="tab-active"    onclick="setStatusFilter('active')">Active</button>
+        <button class="status-tab"        id="tab-completed" onclick="setStatusFilter('completed')">Completed</button>
+      </div>
+
+      <!-- Spacer -->
+      <div class="flex-grow-1"></div>
+
+      <!-- Category filter -->
+      <span class="filter-label d-none d-sm-inline">Category:</span>
+      <select class="filter-select" id="filterCategory" onchange="applyFiltersAndSort()">
+        <option value="all">All</option>
+        <option value="General">📋 General</option>
+        <option value="Work">💼 Work</option>
+        <option value="Personal">🏠 Personal</option>
+        <option value="Shopping">🛒 Shopping</option>
+        <option value="Health">💪 Health</option>
+      </select>
+
+      <!-- Priority filter -->
+      <span class="filter-label d-none d-sm-inline">Priority:</span>
+      <select class="filter-select" id="filterPriority" onchange="applyFiltersAndSort()">
+        <option value="all">All</option>
+        <option value="high">🔴 High</option>
+        <option value="medium">🟡 Medium</option>
+        <option value="low">🟢 Low</option>
+      </select>
+
+      <!-- Sort -->
+      <span class="filter-label d-none d-sm-inline">Sort:</span>
+      <select class="filter-select" id="sortBy" onchange="applyFiltersAndSort()">
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+        <option value="priority">Priority</option>
+        <option value="due_date">Due Date</option>
+      </select>
+
+    </div>
+
+    <!-- Error message -->
+    <div id="errorMessage" class="alert alert-danger d-none mb-3" role="alert"></div>
+
+    <!-- ---- Todo List ---- -->
+    <div id="todoList"></div>
+
+    <!-- Empty state -->
+    <div id="emptyState" class="empty-state d-none">
+      <div class="empty-icon">📭</div>
+      <p>No tasks match your filters.<br>Try changing filters or add a new task above.</p>
+    </div>
+
+  </div><!-- end .app-layout -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

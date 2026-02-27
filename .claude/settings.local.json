@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /c/Users/DheerajS/projects/todo-application && npm install 2>&1)",
+      "Bash(pkill:*)",
+      "Bash(cd /c/Users/DheerajS/projects/todo-application && node -e \"\nconst { chromium } = require\\('playwright'\\);\n\\(async \\(\\) => {\n  const browser = await chromium.launch\\({ headless: false }\\);\n  const page = await browser.newPage\\(\\);\n  const consoleErrors = [];\n  page.on\\('console', msg => { if \\(msg.type\\(\\) === 'error'\\) consoleErrors.push\\(msg.text\\(\\)\\); }\\);\n  await page.goto\\('http://localhost:6000'\\);\n  await page.waitForTimeout\\(3000\\);\n  const title = await page.title\\(\\);\n  const html = await page.content\\(\\);\n  console.log\\('Page title:', title\\);\n  console.log\\('Console errors:', JSON.stringify\\(consoleErrors\\)\\);\n  console.log\\('Has auth-card:', html.includes\\('auth-card'\\)\\);\n  console.log\\('Has Bootstrap:', html.includes\\('bootstrap'\\)\\);\n  await page.screenshot\\({ path: 'debug-screenshot.png', fullPage: true }\\);\n  console.log\\('Screenshot saved'\\);\n  await browser.close\\(\\);\n}\\)\\(\\);\n\" 2>&1)",
+      "Bash(cd /c/Users/DheerajS/projects/todo-application && node -e \"\nconst { chromium } = require\\('playwright'\\);\n\\(async \\(\\) => {\n  const browser = await chromium.launch\\({ headless: false }\\);\n  const page = await browser.newPage\\(\\);\n  const consoleErrors = [];\n  page.on\\('console', msg => { if \\(msg.type\\(\\) === 'error'\\) consoleErrors.push\\(msg.text\\(\\)\\); }\\);\n  await page.goto\\('http://localhost:6000'\\);\n  await page.waitForTimeout\\(3000\\);\n  const title = await page.title\\(\\);\n  const html = await page.content\\(\\);\n  console.log\\('Page title:', title\\);\n  console.log\\('Console errors:', JSON.stringify\\(consoleErrors\\)\\);\n  console.log\\('Has auth-card:', html.includes\\('auth-card'\\)\\);\n  await page.screenshot\\({ path: 'debug-screenshot.png', fullPage: true }\\);\n  console.log\\('Screenshot saved'\\);\n  await browser.close\\(\\);\n}\\)\\(\\);\n\" 2>&1)",
+      "Bash(taskkill:*)",
+      "Bash(cmd:*)",
+      "Bash(bash:*)"
+    ]
+  }
+}
