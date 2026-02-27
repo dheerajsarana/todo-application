@@ -50,5 +50,74 @@ db.exec(`
 try { db.exec(`ALTER TABLE todos ADD COLUMN priority TEXT DEFAULT 'medium'`); } catch (e) {}
 try { db.exec(`ALTER TABLE todos ADD COLUMN category TEXT DEFAULT 'General'`); } catch (e) {}
 
+// ---- Module: Profile ----
+// Add displayName column to users table if not already present
+try { db.exec(`ALTER TABLE users ADD COLUMN displayName TEXT`); } catch (e) {}
+
+// ---- Module: Categories ----
+// Stores user-created custom categories
+db.exec(`
+  CREATE TABLE IF NOT EXISTS categories (
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId    INTEGER NOT NULL,
+    name      TEXT    NOT NULL,
+    createdAt TEXT    DEFAULT (datetime('now')),
+    FOREIGN KEY (userId) REFERENCES users(id)
+  )
+`);
+
+// ---- Module: Tags ----
+// User-defined labels that can be attached to todos
+db.exec(`
+  CREATE TABLE IF NOT EXISTS tags (
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId    INTEGER NOT NULL,
+    name      TEXT    NOT NULL,
+    createdAt TEXT    DEFAULT (datetime('now')),
+    FOREIGN KEY (userId) REFERENCES users(id)
+  )
+`);
+
+// Join table linking tags to todos (many-to-many)
+db.exec(`
+  CREATE TABLE IF NOT EXISTS todo_tags (
+    tagId  INTEGER NOT NULL,
+    todoId INTEGER NOT NULL,
+    PRIMARY KEY (tagId, todoId),
+    FOREIGN KEY (tagId)  REFERENCES tags(id),
+    FOREIGN KEY (todoId) REFERENCES todos(id)
+  )
+`);
+
+// ---- Module: Comments ----
+// Notes/comments attached to individual todos
+db.exec(`
+  CREATE TABLE IF NOT EXISTS comments (
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    todoId    INTEGER NOT NULL,
+    userId    INTEGER NOT NULL,
+    text      TEXT    NOT NULL,
+    createdAt TEXT    DEFAULT (datetime('now')),
+    FOREIGN KEY (todoId)  REFERENCES todos(id),
+    FOREIGN KEY (userId)  REFERENCES users(id)
+  )
+`);
+
+// ---- Module: Reminders ----
+// Stores date/time reminders optionally linked to a todo
+db.exec(`
+  CREATE TABLE IF NOT EXISTS reminders (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId     INTEGER NOT NULL,
+    todoId     INTEGER,
+    title      TEXT    NOT NULL,
+    remindAt   TEXT    NOT NULL,
+    dismissed  INTEGER DEFAULT 0,
+    createdAt  TEXT    DEFAULT (datetime('now')),
+    FOREIGN KEY (userId)  REFERENCES users(id),
+    FOREIGN KEY (todoId)  REFERENCES todos(id)
+  )
+`);
+
 // Export the database so other files can use it
 module.exports = db;

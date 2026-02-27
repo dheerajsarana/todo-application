@@ -212,6 +212,7 @@ function createTodoCard(todo) {
 
       <!-- Actions -->
       <div class="todo-actions">
+        <button class="action-btn"        onclick="openComments(${todo.id}, '${escapeAttr(todo.text)}')" title="Notes"><i class="bi bi-chat-left-text"></i></button>
         <button class="action-btn"        onclick="startEditing(${todo.id})" title="Edit"><i class="bi bi-pencil"></i></button>
         <button class="action-btn delete" onclick="deleteTodo(${todo.id})"  title="Delete"><i class="bi bi-trash"></i></button>
       </div>
@@ -414,4 +415,8 @@ function escapeHtml(text) {
   const div = document.createElement('div');
   div.appendChild(document.createTextNode(text));
   return div.innerHTML;
+}
+
+function escapeAttr(text) {
+  return String(text).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
 }

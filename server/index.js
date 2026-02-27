@@ -14,8 +14,14 @@ const cors = require('cors');
 const path = require('path');
 
 // Import our route files
-const authRoutes = require('./routes/auth');
-const todoRoutes = require('./routes/todos');
+const authRoutes       = require('./routes/auth');
+const todoRoutes       = require('./routes/todos');
+const categoriesRoutes = require('./routes/categories');
+const tagsRoutes       = require('./routes/tags');
+const commentsRoutes   = require('./routes/comments');
+const dashboardRoutes  = require('./routes/dashboard');
+const profileRoutes    = require('./routes/profile');
+const remindersRoutes  = require('./routes/reminders');
 
 // Create the Express app
 const app = express();
@@ -46,6 +52,14 @@ app.use('/api/auth', authRoutes);
 
 // All todo routes: /api/todos
 app.use('/api/todos', todoRoutes);
+
+// Module routes
+app.use('/api/categories', categoriesRoutes);
+app.use('/api/tags',       tagsRoutes);
+app.use('/api/comments',   commentsRoutes);
+app.use('/api/dashboard',  dashboardRoutes);
+app.use('/api/profile',    profileRoutes);
+app.use('/api/reminders',  remindersRoutes);
 
 // ---- Start the Server ----
 const PORT = process.env.PORT || 3000;

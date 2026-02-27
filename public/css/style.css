@@ -550,3 +550,316 @@ body {
 .stat-card.total   .stat-number { color: var(--primary); }
 .stat-card.active  .stat-number { color: var(--medium); }
 .stat-card.done    .stat-number { color: var(--low); }
+.stat-card.overdue .stat-number { color: var(--high); }
+.stat-card.today   .stat-number { color: #8B5CF6; }
+
+/* =============================================
+   NAV LINKS (shared navbar)
+   ============================================= */
+
+.nav-links {
+  display: flex;
+  gap: 2px;
+}
+
+.nav-link-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.nav-link-item:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.nav-link-item.active {
+  background: #EFF6FF;
+  color: var(--primary);
+}
+
+/* Show text labels only on wider screens */
+.nav-link-item .link-text {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .nav-link-item .link-text {
+    display: inline;
+  }
+}
+
+/* =============================================
+   MODULE CARD (shared across new pages)
+   ============================================= */
+
+.module-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.section-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* =============================================
+   DASHBOARD
+   ============================================= */
+
+.breakdown-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.breakdown-count {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.recent-todo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.recent-todo-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* =============================================
+   CATEGORIES & TAGS
+   ============================================= */
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #EFF6FF;
+  color: var(--primary);
+  border: 1px solid #BFDBFE;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.chip-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 0;
+  font-size: 13px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  margin-left: 2px;
+}
+
+.chip-delete:hover { color: var(--high); }
+
+/* =============================================
+   PROFILE
+   ============================================= */
+
+.profile-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.profile-section h6 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.danger-zone {
+  border-color: #FECACA;
+}
+
+.danger-zone h6 {
+  color: var(--high);
+}
+
+/* =============================================
+   COMMENTS MODAL
+   ============================================= */
+
+.comment-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.comment-text {
+  font-size: 0.875rem;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.comment-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* =============================================
+   REMINDERS PAGE
+   ============================================= */
+
+.reminder-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.reminder-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.reminder-row.reminder-overdue {
+  background: #FFF8F8;
+  margin: 0 -20px;
+  padding: 12px 20px;
+  border-left: 3px solid var(--high);
+}
+
+.reminder-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #EFF6FF;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.reminder-row.reminder-overdue .reminder-icon {
+  background: var(--high-bg);
+  color: var(--high);
+}
+
+.reminder-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.reminder-title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.reminder-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.reminder-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reminder-task-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #EFF6FF;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.reminder-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.reminder-badge.upcoming  { background: #EFF6FF; color: var(--primary); }
+.reminder-badge.overdue   { background: var(--high-bg); color: var(--high); }
+.reminder-badge.dismissed { background: #F3F4F6; color: var(--text-muted); }
+
+.reminder-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.reminder-empty-state {
+  text-align: center;
+  padding: 32px 0;
+  color: var(--text-muted);
+}
